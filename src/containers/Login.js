@@ -13,13 +13,13 @@ class Login extends Component {
                         <Image style={styles.logo} source={AppLogo} />
                     </View >
                     <View style={styles.localLogin}>
-                        <FormLabel>User Name</FormLabel>
+                        <FormLabel>USER NAME</FormLabel>
                         <FormInput placeholder='Enter user name' />
                         <FormValidationMessage></FormValidationMessage>
-                        <FormLabel>Password</FormLabel>
+                        <FormLabel>PASSWORD</FormLabel>
                         <FormInput placeholder='Enter password' secureTextEntry={true} />
                         <FormValidationMessage></FormValidationMessage>
-                        <Button buttonStyle={{ marginTop: 20 }} title='Login' backgroundColor='#00BCD4' />
+                        <Button buttonStyle={{ marginTop: 20 }} title='LOGIN' backgroundColor='#00BCD4' />
                     </View>
                     <Text style={{ textAlign: 'center' }}>OR</Text>
                     <View style={styles.socialLogin}>
@@ -31,6 +31,7 @@ class Login extends Component {
                             title='Sign In With Google Plus'
                             type='google-plus-official' />
                     </View>
+                    <Text>Don't have account yet?</Text>
                 </View>
             </ScrollView>
         );
@@ -49,7 +50,8 @@ const styles = StyleSheet.create({
     },
     logo: {
         width: 100,
-        height: 100
+        height: 100,
+        marginTop: 70
     },
     avatarContainer: {
         justifyContent: 'center',

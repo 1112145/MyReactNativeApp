@@ -5,6 +5,7 @@ import { SocialIcon, Divider, FormLabel, FormInput, FormValidationMessage, Butto
 const AppLogo = require('../assets/images/logo.png')
 
 class Login extends Component {
+   
     render() {
         return (
             <ScrollView>
@@ -31,15 +32,12 @@ class Login extends Component {
                             title='Sign In With Google Plus'
                             type='google-plus-official' />
                     </View>
-                    <Text>Don't have account yet?</Text>
+                    <Text>Don't have account yet? <Text style={styles.signUp} onPress={() => {  }} >Sign up</Text></Text>
                 </View>
             </ScrollView>
         );
     }
 
-    onBtnLoginClick() {
-        alert('click!')
-    }
 }
 
 const styles = StyleSheet.create({
@@ -51,7 +49,7 @@ const styles = StyleSheet.create({
     logo: {
         width: 100,
         height: 100,
-        marginTop: 70
+        marginTop: 20
     },
     avatarContainer: {
         justifyContent: 'center',
@@ -66,7 +64,12 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        flexDirection: 'row'
+        flexDirection: 'row',
+        paddingBottom: 10
+    },
+    signUp: {
+        fontSize: 20,
+        color: '#0D47A1'
     }
 });
 

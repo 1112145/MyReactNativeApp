@@ -1,21 +1,28 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { StackNavigator } from 'react-navigation';
 
-import Login from './src/containers/Login'
+import Login from './src/containers/Login';
+import SignUp from './src/containers/SignUp';
+
+
 
 export default class App extends React.Component {
+
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
-     <Login/>
+      <Login />
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+      height: '100%',
+      backgroundColor: 'yellow'
   },
 });

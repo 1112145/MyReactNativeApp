@@ -4,7 +4,7 @@ import { StackNavigator } from 'react-navigation';
 
 import Login from './src/containers/Login';
 import SignUp from './src/containers/SignUp';
-
+import { Router, Stack, Scene } from 'react-native-router-flux';
 
 
 export default class App extends React.Component {
@@ -15,14 +15,19 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <SignUp />
+        <Router sceneStyle={styles.container}>
+          <Stack key="root">
+            <Scene key="login" component={Login} hideNavBar />
+            <Scene key="signup" component={SignUp} title="SignUp" />
+          </Stack>
+        </Router>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-      height: '100%',
-      backgroundColor: 'yellow'
+    flex: 1,
+    backgroundColor: 'white',
   },
 });

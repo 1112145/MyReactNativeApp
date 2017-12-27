@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, StyleSheet, Image, Text, ScrollView } from 'react-native';
 import { SocialIcon, Divider, FormLabel, FormInput, FormValidationMessage, Button } from 'react-native-elements';
 
+import InputControl from '../components/InputControl'
 const AppLogo = require('../assets/images/logo.png')
 
 class SignUp extends Component {
@@ -13,15 +14,9 @@ class SignUp extends Component {
                         <Image style={styles.logo} source={AppLogo} />
                     </View >
                     <View style={styles.localLogin}>
-                        <FormLabel>USER NAME</FormLabel>
-                        <FormInput placeholder='Enter user name' />
-                        <FormValidationMessage></FormValidationMessage>
-                        <FormLabel>PASSWORD</FormLabel>
-                        <FormInput placeholder='Enter password' secureTextEntry={true} />
-                        <FormValidationMessage></FormValidationMessage>
-                        <FormLabel>CONFIRM PASSWORD</FormLabel>
-                        <FormInput placeholder='Enter confirm password' secureTextEntry={true} />
-                        <FormValidationMessage></FormValidationMessage>
+                        <InputControl label='USER NAME' placeholder='Enter user name'/>
+                        <InputControl label='PASSWORD' placeholder='Enter password'/>
+                        <InputControl label='CONFIRM PASSWORD' placeholder='Enter confirm password'/>
                         <Button buttonStyle={{ marginTop: 20 }} title='SIGN UP' backgroundColor='#F44336' />
                     </View>
                 </View>

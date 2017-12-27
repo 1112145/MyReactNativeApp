@@ -4,6 +4,7 @@ import { SocialIcon, Divider, FormLabel, FormInput, FormValidationMessage, Butto
 import { validateUserName, validatePassword, validateConfirmPassword } from '../../helpers/InputValidators';
 
 import InputControl from '../../components/InputControl'
+import { Actions } from 'react-native-router-flux';
 const AppLogo = require('../../assets/images/logo.png')
 
 const DEFAULT_STATE = {
@@ -42,7 +43,7 @@ class SignUp extends Component {
                         <InputControl onChangeText={(text) => this.setState({ valueConfirmPassword: text })}
                             label='CONFIRM PASSWORD'
                             placeholder='Enter confirm password'
-                            secureTextEntry 
+                            secureTextEntry
                             validationText={this.state.errConfirmPassword} />
                         <Button onPress={this.onBtnSignUpPress.bind(this)} buttonStyle={{ marginTop: 20 }} title='SIGN UP' backgroundColor='#F44336' />
                     </View>
@@ -52,7 +53,7 @@ class SignUp extends Component {
     }
 
     onBtnSignUpPress() {
-        if(!this.isValidForm()){
+        if (!this.isValidForm()) {
             // call API.
         } else {
         }

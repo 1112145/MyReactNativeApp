@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Image, Text, ScrollView } from 'react-native';
+import { View, StyleSheet, Image, Text, ScrollView, KeyboardAvoidingView } from 'react-native';
 import { SocialIcon, Divider, FormLabel, FormInput, FormValidationMessage, Button } from 'react-native-elements';
 import { validateUserName, validatePassword, validateConfirmPassword } from '../../helpers/InputValidators';
 
@@ -30,7 +30,7 @@ class SignUp extends Component {
                     <View style={styles.avatarContainer}>
                         <Image style={styles.logo} source={AppLogo} />
                     </View >
-                    <View style={styles.localLogin}>
+                    <KeyboardAvoidingView style={styles.localLogin}>
                         <InputControl onChangeText={(text) => this.setState({ valueUserName: text })}
                             label='USER NAME'
                             placeholder='Enter user name'
@@ -46,7 +46,7 @@ class SignUp extends Component {
                             secureTextEntry
                             validationText={this.state.errConfirmPassword} />
                         <Button onPress={this.onBtnSignUpPress.bind(this)} buttonStyle={{ marginTop: 20 }} title='SIGN UP' backgroundColor='#F44336' />
-                    </View>
+                    </KeyboardAvoidingView>
                 </View>
             </ScrollView>
         );

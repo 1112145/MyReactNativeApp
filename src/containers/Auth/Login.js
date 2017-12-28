@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Image, Text, ScrollView } from 'react-native';
+import { View, StyleSheet, Image, Text, ScrollView, KeyboardAvoidingView } from 'react-native';
 import { SocialIcon, Divider, FormLabel, FormInput, FormValidationMessage, Button } from 'react-native-elements';
 
 import InputControl from '../../components/InputControl';
@@ -29,7 +29,7 @@ class Login extends Component {
                     <View style={styles.avatarContainer}>
                         <Image style={styles.logo} source={AppLogo} />
                     </View >
-                    <View style={styles.localLogin}>
+                    <KeyboardAvoidingView style={styles.localLogin}>
                         <InputControl onChangeText={(text) => this.setState({ valueUserName: text })}
                             label='USER NAME'
                             placeholder='Enter user name'
@@ -40,7 +40,7 @@ class Login extends Component {
                             validationText={this.state.errPassword}
                             secureTextEntry={true} />
                         <Button onPress={this.onBtnLocalLoginPress.bind(this)} buttonStyle={{ marginTop: 20 }} title='LOGIN' backgroundColor='#00BCD4' />
-                    </View>
+                    </KeyboardAvoidingView>
                     <Text style={{ textAlign: 'center' }}>OR</Text>
                     <View style={styles.socialLogin}>
                         <SocialIcon type='facebook' />

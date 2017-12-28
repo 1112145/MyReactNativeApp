@@ -25,31 +25,31 @@ class SignUp extends Component {
 
     render() {
         return (
-            <KeyboardAvoidingView behavior="padding">
-            <ScrollView>
-                <View style={styles.container}>
-                    <View style={styles.avatarContainer}>
-                        <Image style={styles.logo} source={AppLogo} />
-                    </View >
-                    <View style={styles.localLogin}>
-                        <InputControl onChangeText={(text) => this.setState({ valueUserName: text })}
-                            label='USER NAME'
-                            placeholder='Enter user name'
-                            validationText={this.state.errUserName} />
-                        <InputControl onChangeText={(text) => this.setState({ valuePassword: text })}
-                            label='PASSWORD'
-                            placeholder='Enter password'
-                            secureTextEntry
-                            validationText={this.state.errPassword} />
-                        <InputControl onChangeText={(text) => this.setState({ valueConfirmPassword: text })}
-                            label='CONFIRM PASSWORD'
-                            placeholder='Enter confirm password'
-                            secureTextEntry
-                            validationText={this.state.errConfirmPassword} />
-                        <Button onPress={this.onBtnSignUpPress.bind(this)} buttonStyle={{ marginTop: 20 }} title='SIGN UP' backgroundColor='#F44336' />
+            <KeyboardAvoidingView behavior="position" >
+                <ScrollView>
+                    <View style={styles.container}>
+                        <View style={styles.avatarContainer}>
+                            <Image style={styles.logo} source={AppLogo} />
+                        </View >
+                        <View style={styles.localLogin}>
+                            <InputControl onChangeText={(text) => this.setState({ valueUserName: text })}
+                                label='USER NAME'
+                                placeholder='Enter user name'
+                                validationText={this.state.errUserName} />
+                            <InputControl onChangeText={(text) => this.setState({ valuePassword: text })}
+                                label='PASSWORD'
+                                placeholder='Enter password'
+                                secureTextEntry
+                                validationText={this.state.errPassword} />
+                            <InputControl onChangeText={(text) => this.setState({ valueConfirmPassword: text })}
+                                label='CONFIRM PASSWORD'
+                                placeholder='Enter confirm password'
+                                secureTextEntry
+                                validationText={this.state.errConfirmPassword} />
+                            <Button onPress={this.onBtnSignUpPress.bind(this)} buttonStyle={{ marginTop: 20 }} title='SIGN UP' backgroundColor='#F44336' />
+                        </View>
                     </View>
-                </View>
-            </ScrollView>
+                </ScrollView>
             </KeyboardAvoidingView>
         );
     }
@@ -88,8 +88,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     logo: {
-        width: 50,
-        height: 50,
+        width: 100,
+        height: 100,
         marginTop: 10
     },
     avatarContainer: {

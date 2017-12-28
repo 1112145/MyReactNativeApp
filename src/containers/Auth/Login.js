@@ -24,36 +24,38 @@ class Login extends Component {
 
     render() {
         return (
-            <ScrollView>
-                <View style={styles.container}>
-                    <View style={styles.avatarContainer}>
-                        <Image style={styles.logo} source={AppLogo} />
-                    </View >
-                    <KeyboardAvoidingView style={styles.localLogin}>
-                        <InputControl onChangeText={(text) => this.setState({ valueUserName: text })}
-                            label='USER NAME'
-                            placeholder='Enter user name'
-                            validationText={this.state.errUserName} />
-                        <InputControl onChangeText={(text) => this.setState({ valuePassword: text })}
-                            label='PASSWORD'
-                            placeholder='Enter password'
-                            validationText={this.state.errPassword}
-                            secureTextEntry={true} />
-                        <Button onPress={this.onBtnLocalLoginPress.bind(this)} buttonStyle={{ marginTop: 20 }} title='LOGIN' backgroundColor='#00BCD4' />
-                    </KeyboardAvoidingView>
-                    <Text style={{ textAlign: 'center' }}>OR</Text>
-                    <View style={styles.socialLogin}>
-                        <SocialIcon type='facebook' />
-                        <SocialIcon type='google-plus-official' />
+            <KeyboardAvoidingView behavior="padding">
+                <ScrollView>
+                    <View style={styles.container}>
+                        <View style={styles.avatarContainer}>
+                            <Image style={styles.logo} source={AppLogo} />
+                        </View >
+                        <View style={styles.localLogin}>
+                            <InputControl onChangeText={(text) => this.setState({ valueUserName: text })}
+                                label='USER NAME'
+                                placeholder='Enter user name'
+                                validationText={this.state.errUserName} />
+                            <InputControl onChangeText={(text) => this.setState({ valuePassword: text })}
+                                label='PASSWORD'
+                                placeholder='Enter password'
+                                validationText={this.state.errPassword}
+                                secureTextEntry={true} />
+                            <Button onPress={this.onBtnLocalLoginPress.bind(this)} buttonStyle={{ marginTop: 20 }} title='LOGIN' backgroundColor='#00BCD4' />
+                        </View>
+                        <Text style={{ textAlign: 'center' }}>OR</Text>
+                        <View style={styles.socialLogin}>
+                            <SocialIcon type='facebook' />
+                            <SocialIcon type='google-plus-official' />
+                        </View>
+                        <Text>Don't have account yet? <Text style={styles.signUp} onPress={() => { Actions.jump('signup') }} >Sign up</Text></Text>
                     </View>
-                    <Text>Don't have account yet? <Text style={styles.signUp} onPress={() => { Actions.jump('signup') }} >Sign up</Text></Text>
-                </View>
-            </ScrollView>
+                </ScrollView>
+            </KeyboardAvoidingView>
         );
     }
 
     onBtnLocalLoginPress() {
-        if(!this.isValidForm()){
+        if (!this.isValidForm()) {
             // call API.
         } else {
         }
@@ -66,7 +68,7 @@ class Login extends Component {
 
         isValid = userNameResult !== '' && passwordResult !== '';
 
-        this.setState({errUserName: userNameResult, errPassword: passwordResult})
+        this.setState({ errUserName: userNameResult, errPassword: passwordResult })
 
         return isValid;
 

@@ -25,12 +25,13 @@ class SignUp extends Component {
 
     render() {
         return (
+            <KeyboardAvoidingView behavior="padding">
             <ScrollView>
                 <View style={styles.container}>
                     <View style={styles.avatarContainer}>
                         <Image style={styles.logo} source={AppLogo} />
                     </View >
-                    <KeyboardAvoidingView style={styles.localLogin}>
+                    <View style={styles.localLogin}>
                         <InputControl onChangeText={(text) => this.setState({ valueUserName: text })}
                             label='USER NAME'
                             placeholder='Enter user name'
@@ -46,9 +47,10 @@ class SignUp extends Component {
                             secureTextEntry
                             validationText={this.state.errConfirmPassword} />
                         <Button onPress={this.onBtnSignUpPress.bind(this)} buttonStyle={{ marginTop: 20 }} title='SIGN UP' backgroundColor='#F44336' />
-                    </KeyboardAvoidingView>
+                    </View>
                 </View>
             </ScrollView>
+            </KeyboardAvoidingView>
         );
     }
 

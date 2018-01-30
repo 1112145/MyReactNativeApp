@@ -6,6 +6,7 @@ import InputControl from '../../components/InputControl';
 const AppLogo = require('../../assets/images/logo.png');
 import { validateUserName, validatePassword } from '../../helpers/InputValidators';
 import { Actions } from 'react-native-router-flux';
+import { login } from '../../services/http/authService';
 
 const DEFAULT_STATE = {
     valueUserName: '',
@@ -57,6 +58,12 @@ class Login extends Component {
     onBtnLocalLoginPress() {
         if (!this.isValidForm()) {
             // call API.
+            login({
+                email: this.state.valueUserName,
+                password: this.state.valuePassword
+            }).then(res => {
+                console.log(res);
+            })
         } else {
         }
     }

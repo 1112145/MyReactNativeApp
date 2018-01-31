@@ -11,9 +11,9 @@ const error_msg = {
 
 export const validateUserName = function(userName){
     if(v.isEmpty(userName)){
-        return error_msg.empty_username
+        return error_msg.empty_email
     }
-    return '';
+    return true;
 }
 
 export const validatePassword = function(password){
@@ -23,14 +23,14 @@ export const validatePassword = function(password){
     if(password.length < 8){
         return error_msg.password_not_enough
     }
-    return '';
+    return true;
 }
 
 export const validateConfirmPassword = function(password, confirmPassword){
     if(password !== confirmPassword){
         return error_msg.password_mismatch;
     }
-    return '';
+    return true;
 }
 
 export const validateEmail = function(email) {
@@ -40,5 +40,5 @@ export const validateEmail = function(email) {
     if(!v.isEmail(email)) {
         return error_msg.invalid_email
     };
-    return '';
+    return true;
 }

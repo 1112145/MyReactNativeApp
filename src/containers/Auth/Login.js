@@ -4,7 +4,7 @@ import { SocialIcon, Divider, FormLabel, FormInput, FormValidationMessage, Butto
 
 import InputControl from '../../components/InputControl';
 const AppLogo = require('../../assets/images/logo.png');
-import { validateUserName, validatePassword } from '../../helpers/InputValidators';
+import { validateEmail, validatePassword } from '../../helpers/InputValidators';
 import { Actions } from 'react-native-router-flux';
 import { login } from '../../services/http/authService';
 
@@ -12,7 +12,8 @@ const DEFAULT_STATE = {
     valueUserName: '',
     valuePassword: '',
     errUserName: '',
-    errPassword: ''
+    errPassword: '',
+    isLoading: false
 }
 
 class Login extends Component {
@@ -33,21 +34,21 @@ class Login extends Component {
                         </View >
                         <View style={styles.localLogin}>
                             <InputControl onChangeText={(text) => this.setState({ valueUserName: text })}
-                                label='USER NAME'
-                                placeholder='Enter user name'
+                                label='EMAIL'
+                                placeholder='Enter user email'
                                 validationText={this.state.errUserName} />
                             <InputControl onChangeText={(text) => this.setState({ valuePassword: text })}
                                 label='PASSWORD'
                                 placeholder='Enter password'
                                 validationText={this.state.errPassword}
                                 secureTextEntry={true} />
-                            <Button onPress={this.onBtnLocalLoginPress.bind(this)} buttonStyle={{ marginTop: 20 }} title='LOGIN' backgroundColor='#00BCD4' />
+                            <Button loading={this.state.isLoading} onPress={this.onBtnLocalLoginPress.bind(this)} buttonStyle={{ marginTop: 20 }} title='LOGIN' backgroundColor='#00BCD4' />
                         </View>
                         <Text style={{ textAlign: 'center' }}>OR</Text>
-                        <View style={styles.socialLogin}>
-                            {/* <SocialIcon type='facebook' />
-                            <SocialIcon type='google-plus-official' /> */}
-                        </View>
+                        {/* <View style={styles.socialLogin}>
+                            <SocialIcon type='facebook' />
+                            <SocialIcon type='google-plus-official' />
+                        </View> */}
                         <Text>Don't have account yet? <Text style={styles.signUp} onPress={() => { Actions.jump('signup') }} >Sign up</Text></Text>
                     </View>
                 </ScrollView>
@@ -56,24 +57,26 @@ class Login extends Component {
     }
 
     onBtnLocalLoginPress() {
-        if (!this.isValidForm()) {
+        if (this.isValidForm()) {
             // call API.
+            this.setState({isLoading: true})
             login({
                 email: this.state.valueUserName,
                 password: this.state.valuePassword
             }).then(res => {
-                console.log(res);
-            })
-        } else {
+                console.log(res.data);
+            }).catch(error => {
+                alert(error.response.data.message)
+            }).then(()=> {this.setState({isLoading: false})})
         }
     }
 
     isValidForm() {
         let isValid = true;
-        const userNameResult = validateUserName(this.state.valueUserName);
+        const userNameResult = validateEmail(this.state.valueUserName);
         const passwordResult = validatePassword(this.state.valuePassword);
 
-        isValid = userNameResult !== '' && passwordResult !== '';
+        isValid = userNameResult && passwordResult ;
 
         this.setState({ errUserName: userNameResult, errPassword: passwordResult })
 

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Image, Text, ScrollView, KeyboardAvoidingView } from 'react-native';
 import { SocialIcon, Divider, FormLabel, FormInput, FormValidationMessage, Button } from 'react-native-elements';
-import { validateUserName, validatePassword, validateConfirmPassword } from '../../helpers/InputValidators';
+import { validateEmail, validatePassword, validateConfirmPassword } from '../../helpers/InputValidators';
 
 import InputControl from '../../components/InputControl'
 import { Actions } from 'react-native-router-flux';
+import { register } from '../../services/http/authService';
 const AppLogo = require('../../assets/images/logo.png')
 
 const DEFAULT_STATE = {
@@ -13,7 +14,8 @@ const DEFAULT_STATE = {
     valueConfirmPassword: '',
     errUserName: '',
     errPassword: '',
-    errConfirmPassword: ''
+    errConfirmPassword: '',
+    isLoading: false
 }
 
 class SignUp extends Component {
@@ -33,8 +35,8 @@ class SignUp extends Component {
                         </View >
                         <View style={styles.localLogin}>
                             <InputControl onChangeText={(text) => this.setState({ valueUserName: text })}
-                                label='USER NAME'
-                                placeholder='Enter user name'
+                                label='USER EMAIL'
+                                placeholder='Enter user email'
                                 validationText={this.state.errUserName} />
                             <InputControl onChangeText={(text) => this.setState({ valuePassword: text })}
                                 label='PASSWORD'
@@ -46,7 +48,7 @@ class SignUp extends Component {
                                 placeholder='Enter confirm password'
                                 secureTextEntry
                                 validationText={this.state.errConfirmPassword} />
-                            <Button onPress={this.onBtnSignUpPress.bind(this)} buttonStyle={{ marginTop: 20 }} title='SIGN UP' backgroundColor='#F44336' />
+                            <Button loading={this.state.isLoading} onPress={this.onBtnSignUpPress.bind(this)} buttonStyle={{ marginTop: 20 }} title='SIGN UP' backgroundColor='#F44336' />
                         </View>
                     </View>
                 </ScrollView>
@@ -55,25 +57,33 @@ class SignUp extends Component {
     }
 
     onBtnSignUpPress() {
-        if (!this.isValidForm()) {
+        if (this.isValidForm()) {
             // call API.
-        } else {
-        }
+            this.setState({isLoading: true})
+            register({
+                email: this.state.valueUserName,
+                password: this.state.valuePassword
+            }).then(res => {
+                alert(res.data.message);
+            }).catch(error => {
+                alert(error.response.data.message);
+            }).then(()=> {this.setState({isLoading: false})})
+        } 
     }
 
     isValidForm() {
         let isValid = true;
-        const userNameResult = validateUserName(this.state.valueUserName);
+        const userNameResult = validateEmail(this.state.valueUserName);
         const passwordResult = validatePassword(this.state.valuePassword);
         const confirmPasswordResult = validatePassword(this.state.valueConfirmPassword);
         const matchPass = validateConfirmPassword(this.state.valueConfirmPassword, this.state.valuePassword);
 
-        isValid = userNameResult !== '' && passwordResult !== '' && confirmPasswordResult !== '' && matchPass !== '';
+        isValid = userNameResult  && passwordResult  && confirmPasswordResult  && matchPass ;
 
         this.setState({
             errUserName: userNameResult,
             errPassword: passwordResult,
-            errConfirmPassword: (confirmPasswordResult === '') ? matchPass : confirmPasswordResult
+            errConfirmPassword: (confirmPasswordResult === true) ? matchPass : confirmPasswordResult
         })
 
         return isValid;

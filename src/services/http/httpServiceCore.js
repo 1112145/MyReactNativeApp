@@ -1,7 +1,5 @@
 import axios from 'axios';
-import config from 'react-native-config';
-
-console.log(config);
+import Config from '../../../environmentControl';
 
 export const httpMethod = {
     GET: 'GET',
@@ -11,11 +9,11 @@ export const httpMethod = {
 }
 
 export const get = (endpoint) => {
-    return axios.get(`${config.API_URL}/${endpoint}`);
+    return axios.get(`${Config.API_URL}/${endpoint}`);
 }
 
 export const post = (endpoint, data) => {
-    return axios.post(`${config.API_URL}/${endpoint}`, data);
+    return axios.post(`${Config.API_URL}/${endpoint}`, data);
 }
 
 export const callAPI = (endpoint, method, data = {}) => {

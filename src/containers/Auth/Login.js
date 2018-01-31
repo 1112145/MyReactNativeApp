@@ -45,8 +45,8 @@ class Login extends Component {
                         </View>
                         <Text style={{ textAlign: 'center' }}>OR</Text>
                         <View style={styles.socialLogin}>
-                            <SocialIcon type='facebook' />
-                            <SocialIcon type='google-plus-official' />
+                            {/* <SocialIcon type='facebook' />
+                            <SocialIcon type='google-plus-official' /> */}
                         </View>
                         <Text>Don't have account yet? <Text style={styles.signUp} onPress={() => { Actions.jump('signup') }} >Sign up</Text></Text>
                     </View>

@@ -2,7 +2,11 @@
   "expo": {
     "sdkVersion": "25.0.0",
     "name": "SY App",
-    "slug": "sanyangapp"
+    "slug": "sanyangapp",
+    "icon": "./src/assets/images/logo.png",
+    "android": {
+      "package": "com.sanyang.sanyangapp"
+    }
   },
   "displayName": "SY App"
 }

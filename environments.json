@@ -1,0 +1,8 @@
+{
+    "development": {
+        "API_URL": "https://node-clobend.herokuapp.com/api/"
+    },
+    "production": {
+        "API_URL": "https://node-clobend.herokuapp.com/api/"
+    }
+}

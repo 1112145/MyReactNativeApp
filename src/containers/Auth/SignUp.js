@@ -72,13 +72,14 @@ class SignUp extends Component {
     }
 
     isValidForm() {
-        let isValid = true;
+        let isValid = false;
         const userNameResult = validateEmail(this.state.valueUserName);
         const passwordResult = validatePassword(this.state.valuePassword);
         const confirmPasswordResult = validatePassword(this.state.valueConfirmPassword);
         const matchPass = validateConfirmPassword(this.state.valueConfirmPassword, this.state.valuePassword);
 
-        isValid = userNameResult  && passwordResult  && confirmPasswordResult  && matchPass ;
+        isValid = userNameResult === true  && passwordResult === true  
+                && confirmPasswordResult === true  && matchPass === true ;
 
         this.setState({
             errUserName: userNameResult,

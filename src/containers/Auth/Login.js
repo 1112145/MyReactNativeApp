@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Image, Text, ScrollView, KeyboardAvoidingView } from 'react-native';
+import { View, StyleSheet, Image, Text, ScrollView, KeyboardAvoidingView, AsyncStorage } from 'react-native';
 import { SocialIcon, Divider, FormLabel, FormInput, FormValidationMessage, Button } from 'react-native-elements';
 
 import InputControl from '../../components/InputControl';
@@ -8,12 +8,14 @@ import { validateEmail, validatePassword } from '../../helpers/InputValidators';
 import { Actions, Scene } from 'react-native-router-flux';
 import { login } from '../../services/http/authService';
 
+import { AppLoading } from 'expo';
+
 const DEFAULT_STATE = {
     valueUserName: '',
     valuePassword: '',
     errUserName: '',
     errPassword: '',
-    isLoading: false
+    isLoading: false,
 }
 
 class Login extends Component {
@@ -24,9 +26,23 @@ class Login extends Component {
         this.state = Object.assign({}, DEFAULT_STATE);
     }
 
+    componentWillMount = () => {
+        try {
+            const value = AsyncStorage.getItem('userData');
+            if (value !== null){
+              // We have data!!
+              Actions.home();
+            }
+          } catch (error) {
+            // Error retrieving data
+          }
+
+    }
+    
+
     render() {
         return (
-            <KeyboardAvoidingView behavior="padding">
+            <View>
                 <ScrollView>
                     <View style={styles.container}>
                         <View style={styles.avatarContainer}>
@@ -47,7 +63,7 @@ class Login extends Component {
                         <Text>Don't have account yet? <Text style={styles.signUp} onPress={() => { Actions.jump('signup') }} >Sign up</Text></Text>
                     </View>
                 </ScrollView>
-            </KeyboardAvoidingView>
+            </View>
         );
     }
 
@@ -59,20 +75,23 @@ class Login extends Component {
                 email: this.state.valueUserName,
                 password: this.state.valuePassword
             }).then(res => {
-                console.log(res.data);
-                Actions.jump('home');
+                AsyncStorage.setItem('userData', JSON.stringify(res.data));
+                Actions.home();
+    
             }).catch(error => {
                 alert(error.response.data.message)
             }).then(()=> {this.setState({isLoading: false})})
         }
     }
 
+
+
     isValidForm() {
-        let isValid = true;
+        let isValid = false;
         const userNameResult = validateEmail(this.state.valueUserName);
         const passwordResult = validatePassword(this.state.valuePassword);
 
-        isValid = userNameResult && passwordResult ;
+        isValid = userNameResult === true && passwordResult === true ;
 
         this.setState({ errUserName: userNameResult, errPassword: passwordResult })
 

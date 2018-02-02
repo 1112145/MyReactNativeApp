@@ -21,7 +21,7 @@ export const validatePassword = function(password){
         return error_msg.empty_pass;
     }
     if(password.length < 8){
-        return error_msg.password_not_enough
+        return error_msg.password_not_enough;
     }
     return true;
 }

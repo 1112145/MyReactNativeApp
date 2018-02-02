@@ -5,7 +5,7 @@ import { SocialIcon, Divider, FormLabel, FormInput, FormValidationMessage, Butto
 import InputControl from '../../components/InputControl';
 const AppLogo = require('../../assets/images/logo.png');
 import { validateEmail, validatePassword } from '../../helpers/InputValidators';
-import { Actions } from 'react-native-router-flux';
+import { Actions, Scene } from 'react-native-router-flux';
 import { login } from '../../services/http/authService';
 
 const DEFAULT_STATE = {
@@ -44,11 +44,6 @@ class Login extends Component {
                                 secureTextEntry={true} />
                             <Button loading={this.state.isLoading} onPress={this.onBtnLocalLoginPress.bind(this)} buttonStyle={{ marginTop: 20 }} title='LOGIN' backgroundColor='#00BCD4' />
                         </View>
-                        <Text style={{ textAlign: 'center' }}>OR</Text>
-                        {/* <View style={styles.socialLogin}>
-                            <SocialIcon type='facebook' />
-                            <SocialIcon type='google-plus-official' />
-                        </View> */}
                         <Text>Don't have account yet? <Text style={styles.signUp} onPress={() => { Actions.jump('signup') }} >Sign up</Text></Text>
                     </View>
                 </ScrollView>
@@ -65,6 +60,7 @@ class Login extends Component {
                 password: this.state.valuePassword
             }).then(res => {
                 console.log(res.data);
+                Actions.jump('home');
             }).catch(error => {
                 alert(error.response.data.message)
             }).then(()=> {this.setState({isLoading: false})})

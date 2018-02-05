@@ -1,23 +1,17 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { Avatar } from 'react-native-elements';
 
 class SideMenu extends Component {
     render() {
         return (
-            <View style={styles.container}>
+            <View>
+                <Avatar rounded source={{uri:'https://cdn0.iconfinder.com/data/icons/avatar-vol-2-4/512/9-512.png'}}/>
                 <Text>SideMenu</Text>
             </View>
         );
     }
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#2c3e50',
-    },
-});
 
 export default SideMenu;

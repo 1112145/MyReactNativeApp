@@ -1,29 +1,17 @@
 //import liraries
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { Header, Button } from 'react-native-elements';
-import { Actions } from 'react-native-router-flux';
-
 
 // create a component
-class Home extends Component {
+class B extends Component {
     render() {
-        
         return (
             <View style={styles.container}>
-                {/* <Header
-                    leftComponent={{ icon: 'menu', color: '#fff' }}
-                    centerComponent={{ text: 'SANYANG APP', style: { color: '#fff' } }}/>
-                <Text>Home</Text> */}
-               <Text>Home Page</Text>
+                <Text>B</Text>
             </View>
         );
     }
-
-  
 }
-
-
 
 // define your styles
 const styles = StyleSheet.create({
@@ -36,4 +24,4 @@ const styles = StyleSheet.create({
 });
 
 //make this component available to the app
-export default Home;
+export default B;

@@ -4,7 +4,11 @@ import { StyleSheet, Text, View, AsyncStorage } from 'react-native';
 import Login from './src/containers/Auth/Login';
 import SignUp from './src/containers/Auth/SignUp';
 import Home from './src/containers/Pages/Home';
-import { Router, Stack, Scene, ActionConst } from 'react-native-router-flux';
+import SideMenu from './src/components/SideMenu';
+import A from './src/containers/Pages/A';
+import B from './src/containers/Pages/B';
+
+import { Router, Drawer, Scene, ActionConst } from 'react-native-router-flux';
 
 import { Font, AppLoading } from 'expo';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -23,12 +27,18 @@ export default class App extends React.Component {
       return <AppLoading />;
     }
     return (
-        <Router sceneStyle={styles.container}>
-          <Stack key="root">
+        <Router  sceneStyle={styles.container}>
+          <Scene key='root'>
             <Scene key="login" component={Login} hideNavBar  />
             <Scene key="signup" component={SignUp} hideNavBar />
-            <Scene key="home" component={Home} hideNavBar onEnter={this.checkIfLogined.bind(this)} type={ActionConst.RESET}/>
-          </Stack>
+            <Scene key="drawer" drawer contentComponent={SideMenu} initial drawerPosition="left" drawerWidth={250}>
+              <Scene key="main">
+                  <Scene key="home" component={Home}/>
+                  <Scene key="orders" component={B}/>
+              </Scene>
+            </Scene>
+          </Scene>
+            
         </Router>
     );
   }

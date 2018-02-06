@@ -31,7 +31,12 @@ class Login extends Component {
             const value = AsyncStorage.getItem('userData');
             if (value !== null){
               // We have data!!
-              Actions.home();
+              value.then(res => {
+                  if(res !== null) {
+                    Actions.home();
+                  }
+              })
+           
             }
           } catch (error) {
             // Error retrieving data

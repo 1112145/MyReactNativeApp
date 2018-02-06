@@ -33,7 +33,7 @@ class Login extends Component {
               // We have data!!
               value.then(res => {
                   if(res !== null) {
-                    Actions.home();
+                    Actions.jump('drawer');
                   }
               })
            
@@ -81,7 +81,7 @@ class Login extends Component {
                 password: this.state.valuePassword
             }).then(res => {
                 AsyncStorage.setItem('userData', JSON.stringify(res.data));
-                Actions.home();
+                Actions.jump('drawer');
     
             }).catch(error => {
                 alert(error.response.data.message)

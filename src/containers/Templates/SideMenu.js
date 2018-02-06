@@ -22,8 +22,6 @@ class SideMenu extends Component {
             avatar_uri: 'https://cdn0.iconfinder.com/data/icons/avatar-vol-2-4/512/9-512.png',
             user_name: 'Nguyen Dang Khoa' 
         }
-
-        Actions.drawerOpen();
     }
 
     logOut(){

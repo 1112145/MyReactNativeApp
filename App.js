@@ -27,20 +27,17 @@ export default class App extends React.Component {
       return <AppLoading />;
     }
     return (
-        <Router  sceneStyle={styles.container}>
-          <Scene key='root'>
-            <Scene key="login" component={Login} hideNavBar initial />
+        <Router backAndroidHandler={()=>(null)}  sceneStyle={styles.container} >
+          <Scene key='root' >
+            <Scene key="login" component={Login} hideNavBar />
             <Scene key="signup" component={SignUp} hideNavBar />
-            <Scene key="drawer" drawer contentComponent={SideMenu}
+            <Scene key="drawer" drawer contentComponent={SideMenu} 
                     onEnter={this.checkIfLogined} 
                     drawerPosition="left" drawerWidth={300} hideNavBar>
-              <Scene key="main">
-                  <Scene key="home" component={Home}/>
-                  <Scene key="orders" component={B}/>
-              </Scene>
+              <Scene key="home" component={Home}/>
+              <Scene key="orders" component={B}/>
             </Scene>
           </Scene>
-            
         </Router>
     );
   }

@@ -11,10 +11,6 @@ class Home extends Component {
         
         return (
             <View style={styles.container}>
-                {/* <Header
-                    leftComponent={{ icon: 'menu', color: '#fff' }}
-                    centerComponent={{ text: 'SANYANG APP', style: { color: '#fff' } }}/>
-                <Text>Home</Text> */}
                <Text>Home Page</Text>
             </View>
         );
@@ -25,15 +21,12 @@ class Home extends Component {
 
 
 
-// define your styles
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#2c3e50',
     },
 });
 
-//make this component available to the app
 export default Home;

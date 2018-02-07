@@ -19,7 +19,7 @@ class SideMenu extends Component {
         super(props);
 
         this.state = {
-            avatar_uri: 'https://cdn0.iconfinder.com/data/icons/avatar-vol-2-4/512/9-512.png',
+            avatar_uri: 'http://media.bizwebmedia.net/sites/76685/data/Upload/2014/9/kien_thuc_chup_anh_2.jpg',
             user_name: 'Nguyen Dang Khoa' 
         }
     }

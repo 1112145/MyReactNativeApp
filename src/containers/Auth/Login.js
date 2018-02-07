@@ -16,6 +16,7 @@ const DEFAULT_STATE = {
     errUserName: '',
     errPassword: '',
     isLoading: false,
+    isReadingData: true
 }
 
 class Login extends Component {
@@ -32,11 +33,14 @@ class Login extends Component {
             if (value !== null){
               // We have data!!
               value.then(res => {
+                  this.setState({isReadingData: false})
                   if(res !== null) {
                     Actions.jump('drawer');
                   }
               })
            
+            } else {
+                this.setState({isReadingData: false})
             }
           } catch (error) {
             // Error retrieving data
@@ -46,6 +50,9 @@ class Login extends Component {
     
 
     render() {
+        if(this.state.isReadingData) {
+            return <Text>Loading</Text>
+        }
         return (
             <ScrollView>
                 <View style={{flex: 1, alignItems: 'center'}}>

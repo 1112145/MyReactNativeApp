@@ -5,8 +5,6 @@ import Login from './src/containers/Auth/Login';
 import SignUp from './src/containers/Auth/SignUp';
 import Home from './src/containers/Pages/Home';
 import SideMenu from './src/containers/Templates/SideMenu';
-import A from './src/containers/Pages/A';
-import B from './src/containers/Pages/B';
 
 import { Router, Drawer, Scene, ActionConst } from 'react-native-router-flux';
 
@@ -38,7 +36,6 @@ export default class App extends React.Component {
                     onEnter={this.checkIfLogined} 
                     drawerPosition="left" drawerWidth={300} hideNavBar>
               <Scene key="home" component={Home}/>
-              <Scene key="orders" component={B}/>
             </Scene>
           </Scene>
         </Router>

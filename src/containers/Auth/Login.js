@@ -47,28 +47,31 @@ class Login extends Component {
 
     render() {
         return (
-            <View>
-                <ScrollView>
-                    <View style={styles.container}>
-                        <View style={styles.avatarContainer}>
-                            <Image style={styles.logo} source={AppLogo} />
-                        </View >
-                        <View style={styles.localLogin}>
-                            <InputControl onChangeText={(text) => this.setState({ valueUserName: text })}
-                                label='EMAIL'
-                                placeholder='Enter user email'
-                                validationText={this.state.errUserName} />
-                            <InputControl onChangeText={(text) => this.setState({ valuePassword: text })}
-                                label='PASSWORD'
-                                placeholder='Enter password'
-                                validationText={this.state.errPassword}
-                                secureTextEntry={true} />
-                            <Button loading={this.state.isLoading} onPress={this.onBtnLocalLoginPress.bind(this)} buttonStyle={{ marginTop: 20 }} title='LOGIN' backgroundColor='#00BCD4' />
+            <ScrollView>
+                <View style={{flex: 1, alignItems: 'center'}}>
+                        <View  style={styles.loginForm}>
+                            <View style={styles.avatarContainer}>
+                                <Image style={styles.logo} source={AppLogo} />
+                            </View >
+                            <View style={styles.localLogin}>
+                                <InputControl onChangeText={(text) => this.setState({ valueUserName: text })}
+                                    label='EMAIL'
+                                    placeholder='Enter user email'
+                                    validationText={this.state.errUserName} />
+                                <InputControl onChangeText={(text) => this.setState({ valuePassword: text })}
+                                    label='PASSWORD'
+                                    placeholder='Enter password'
+                                    validationText={this.state.errPassword}
+                                    secureTextEntry={true} />
+                                <Button loading={this.state.isLoading} onPress={this.onBtnLocalLoginPress.bind(this)} buttonStyle={{ marginTop: 20 }} title='LOGIN' backgroundColor='#00BCD4' />
+                            </View>
+                            <View style={{alignItems: 'center'}}>
+                                <Text >Don't have account yet? <Text style={styles.signUp} onPress={() => { Actions.jump('signup') }} >Sign up</Text></Text>
+                            </View>
                         </View>
-                        <Text>Don't have account yet? <Text style={styles.signUp} onPress={() => { Actions.jump('signup') }} >Sign up</Text></Text>
-                    </View>
-                </ScrollView>
-            </View>
+                </View>
+            </ScrollView>
+            
         );
     }
 
@@ -110,6 +113,10 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         height: '100%',
         alignItems: 'center',
+        flex: 1
+    },
+    loginForm: {
+        maxWidth: 360,
     },
     logo: {
         width: 100,

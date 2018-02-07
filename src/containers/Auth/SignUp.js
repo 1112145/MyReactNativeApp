@@ -27,28 +27,31 @@ class SignUp extends Component {
 
     render() {
         return (
-            <KeyboardAvoidingView behavior="position" >
+            <KeyboardAvoidingView behavior="padding" style={{flex: 1}}  >
                 <ScrollView>
-                    <View style={styles.container}>
-                        <View style={styles.avatarContainer}>
-                            <Image style={styles.logo} source={AppLogo} />
-                        </View >
-                        <View style={styles.localLogin}>
-                            <InputControl onChangeText={(text) => this.setState({ valueUserName: text })}
-                                label='USER EMAIL'
-                                placeholder='Enter user email'
-                                validationText={this.state.errUserName} />
-                            <InputControl onChangeText={(text) => this.setState({ valuePassword: text })}
-                                label='PASSWORD'
-                                placeholder='Enter password'
-                                secureTextEntry
-                                validationText={this.state.errPassword} />
-                            <InputControl onChangeText={(text) => this.setState({ valueConfirmPassword: text })}
-                                label='CONFIRM PASSWORD'
-                                placeholder='Enter confirm password'
-                                secureTextEntry
-                                validationText={this.state.errConfirmPassword} />
-                            <Button loading={this.state.isLoading} onPress={this.onBtnSignUpPress.bind(this)} buttonStyle={{ marginTop: 20 }} title='SIGN UP' backgroundColor='#F44336' />
+                    <View style={{flex: 1,  alignItems: 'center'}}>
+                        <View style={styles.registerForm}>
+                            <View style={styles.avatarContainer}>
+                                <Image style={styles.logo} source={AppLogo} />
+                            </View >
+                            <View style={styles.localLogin}>
+                                <InputControl onChangeText={(text) => this.setState({ valueUserName: text })}
+                                    label='USER EMAIL'
+                                    placeholder='Enter user email'
+                                    validationText={this.state.errUserName} />
+                                <InputControl onChangeText={(text) => this.setState({ valuePassword: text })}
+                                    label='PASSWORD'
+                                    placeholder='Enter password'
+                                    secureTextEntry
+                                    validationText={this.state.errPassword} />
+                                <InputControl onChangeText={(text) => this.setState({ valueConfirmPassword: text })}
+                                    label='CONFIRM PASSWORD'
+                                    placeholder='Enter confirm password'
+                                    secureTextEntry
+                                    validationText={this.state.errConfirmPassword} />
+                                <Button loading={this.state.isLoading} onPress={this.onBtnSignUpPress.bind(this)} buttonStyle={{ marginTop: 20 }} title='SIGN UP' backgroundColor='#F44336' />
+                                <Button title='BACK TO LOGIN' onPress={()=>{Actions.jump('login')}} buttonStyle={{ marginTop: 20 }} backgroundColor='teal'/>
+                             </View>
                         </View>
                     </View>
                 </ScrollView>
@@ -97,6 +100,10 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         height: '100%',
         alignItems: 'center',
+        flex: 1
+    },
+    registerForm:{
+        maxWidth: 360,
     },
     logo: {
         width: 100,

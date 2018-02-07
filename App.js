@@ -12,6 +12,7 @@ import { Router, Drawer, Scene, ActionConst } from 'react-native-router-flux';
 
 import { Font, AppLoading } from 'expo';
 import { MaterialIcons, FontAwesome } from '@expo/vector-icons';
+import StatusBarBackground from './src/components/StatusBarBackground';
 
 export default class App extends React.Component {
 
@@ -27,7 +28,9 @@ export default class App extends React.Component {
       return <AppLoading />;
     }
     return (
-        <Router backAndroidHandler={()=>(null)}  sceneStyle={styles.container} >
+      <View style={styles.container}>
+        <StatusBarBackground/>
+        <Router backAndroidHandler={()=>(null)} sceneStyle={styles.container} >
           <Scene key='root' >
             <Scene key="login" component={Login} hideNavBar />
             <Scene key="signup" component={SignUp} hideNavBar />
@@ -39,6 +42,7 @@ export default class App extends React.Component {
             </Scene>
           </Scene>
         </Router>
+      </View>
     );
   }
 
@@ -64,6 +68,5 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
   },
 });

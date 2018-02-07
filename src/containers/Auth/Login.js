@@ -3,6 +3,8 @@ import { View, StyleSheet, Image, Text, ScrollView, KeyboardAvoidingView, AsyncS
 import { SocialIcon, Divider, FormLabel, FormInput, FormValidationMessage, Button } from 'react-native-elements';
 
 import InputControl from '../../components/InputControl';
+import AppText from '../../components/AppText';
+
 const AppLogo = require('../../assets/images/logo.png');
 import { validateEmail, validatePassword } from '../../helpers/InputValidators';
 import { Actions, Scene } from 'react-native-router-flux';
@@ -51,7 +53,7 @@ class Login extends Component {
 
     render() {
         if(this.state.isReadingData) {
-            return <Text>Loading</Text>
+            return <AppText>Loading</AppText>
         }
         return (
             <ScrollView>
@@ -73,7 +75,7 @@ class Login extends Component {
                                 <Button loading={this.state.isLoading} onPress={this.onBtnLocalLoginPress.bind(this)} buttonStyle={{ marginTop: 20 }} title='LOGIN' backgroundColor='#00BCD4' />
                             </View>
                             <View style={{alignItems: 'center'}}>
-                                <Text >Don't have account yet? <Text style={styles.signUp} onPress={() => { Actions.jump('signup') }} >Sign up</Text></Text>
+                                <AppText >Don't have account yet? <AppText style={styles.signUp} onPress={() => { Actions.jump('signup') }} >Sign up</AppText></AppText>
                             </View>
                         </View>
                 </View>

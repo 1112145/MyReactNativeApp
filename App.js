@@ -9,8 +9,12 @@ import SideMenu from './src/containers/Templates/SideMenu';
 import { Router, Drawer, Scene, ActionConst } from 'react-native-router-flux';
 
 import { Font, AppLoading } from 'expo';
-import { MaterialIcons, FontAwesome } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 import StatusBarBackground from './src/components/StatusBarBackground';
+
+const RobotoFont = require('./src/assets/fonts/Roboto-Medium.ttf');
+const RammettoOne = require('./src/assets/fonts/RammettoOne.ttf');
+const Oswald = require('./src/assets/fonts/Oswald.ttf');
 
 export default class App extends React.Component {
 
@@ -56,6 +60,9 @@ export default class App extends React.Component {
   async componentWillMount() {
     await Font.loadAsync({
       'MaterialIcons': MaterialIcons.font.material,
+      'Roboto': RobotoFont,
+      'RammettoOne': RammettoOne,
+      'Oswald': Oswald
     });
 
     this.setState({ fontsLoaded: true });
@@ -64,6 +71,6 @@ export default class App extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 1
   },
 });

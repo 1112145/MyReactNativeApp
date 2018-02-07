@@ -7,6 +7,7 @@ import InputControl from '../../components/InputControl'
 import { Actions } from 'react-native-router-flux';
 import { register } from '../../services/http/authService';
 const AppLogo = require('../../assets/images/logo.png')
+import { DefaultFont } from '../../services/constant';
 
 const DEFAULT_STATE = {
     valueUserName: '',
@@ -49,8 +50,8 @@ class SignUp extends Component {
                                     placeholder='Enter confirm password'
                                     secureTextEntry
                                     validationText={this.state.errConfirmPassword} />
-                                <Button loading={this.state.isLoading} onPress={this.onBtnSignUpPress.bind(this)} buttonStyle={{ marginTop: 20 }} title='SIGN UP' backgroundColor='#F44336' />
-                                <Button title='BACK TO LOGIN' onPress={()=>{Actions.jump('login')}} buttonStyle={{ marginTop: 20 }} backgroundColor='teal'/>
+                                <Button titleStyle={{fontFamily: DefaultFont}} loading={this.state.isLoading} onPress={this.onBtnSignUpPress.bind(this)} buttonStyle={{ marginTop: 20 }} title='SIGN UP' backgroundColor='#F44336' />
+                                <Button titleStyle={{fontFamily: DefaultFont}} title='BACK TO LOGIN' onPress={()=>{Actions.jump('login')}} buttonStyle={{ marginTop: 20 }} backgroundColor='teal'/>
                              </View>
                         </View>
                     </View>

@@ -11,6 +11,7 @@ import { Actions, Scene } from 'react-native-router-flux';
 import { login } from '../../services/http/authService';
 
 import { AppLoading } from 'expo';
+import { DefaultFont } from '../../services/constant';
 
 const DEFAULT_STATE = {
     valueUserName: '',
@@ -72,7 +73,8 @@ class Login extends Component {
                                     placeholder='Enter password'
                                     validationText={this.state.errPassword}
                                     secureTextEntry={true} />
-                                <Button loading={this.state.isLoading} onPress={this.onBtnLocalLoginPress.bind(this)} buttonStyle={{ marginTop: 20 }} title='LOGIN' backgroundColor='#00BCD4' />
+                                <Button loading={this.state.isLoading} onPress={this.onBtnLocalLoginPress.bind(this)} 
+                                        buttonStyle={{ marginTop: 20 }} titleStyle={{fontFamily: DefaultFont}} title='LOGIN' backgroundColor='#00BCD4' />
                             </View>
                             <View style={{alignItems: 'center'}}>
                                 <AppText >Don't have account yet? <AppText style={styles.signUp} onPress={() => { Actions.jump('signup') }} >Sign up</AppText></AppText>

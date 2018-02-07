@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, AsyncStorage } from 'react-native';
 import { Avatar, Divider, List, ListItem, Icon } from 'react-native-elements';
 import { Actions, ActionConst } from 'react-native-router-flux';
 import AppText from '../../components/AppText';
+import { DefaultFont } from '../../services/constant';
 
 
 
@@ -45,7 +46,8 @@ class SideMenu extends Component {
         const items = []
         this.menuItem.forEach((item, index) => {
             const icon = <Icon name={item.icon} style={{marginRight: 20}}/>;
-            items.push(<ListItem onPress={item.onClick} key={index} title={item.title} leftIcon={icon} titleStyle={{marginLeft: 10}}/>)
+            items.push(<ListItem onPress={item.onClick} key={index} title={item.title} 
+                        leftIcon={icon} titleStyle={{marginLeft: 10, fontFamily: DefaultFont}}/>)
         });
         return <List >
             {items}

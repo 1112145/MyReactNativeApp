@@ -13,6 +13,9 @@ import { login } from '../../services/http/authService';
 import { AppLoading } from 'expo';
 import { DefaultFont } from '../../services/constant';
 
+import { connect } from 'react-redux';
+import { actions } from '../../_redux';
+
 const DEFAULT_STATE = {
     valueUserName: '',
     valuePassword: '',
@@ -28,6 +31,7 @@ class Login extends Component {
         super(props);
 
         this.state = Object.assign({}, DEFAULT_STATE);
+
     }
 
     componentWillMount = () => {
@@ -38,6 +42,7 @@ class Login extends Component {
               value.then(res => {
                   this.setState({isReadingData: false})
                   if(res !== null) {
+                    this.props.dispatch(actions.auth(JSON.parse(res)))
                     Actions.jump('drawer');
                   }
               })
@@ -94,6 +99,7 @@ class Login extends Component {
                 email: this.state.valueUserName,
                 password: this.state.valuePassword
             }).then(res => {
+                actions.auth(res.data);
                 AsyncStorage.setItem('userData', JSON.stringify(res.data));
                 Actions.jump('drawer');
     
@@ -156,4 +162,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Login;
+export default connect()(Login);

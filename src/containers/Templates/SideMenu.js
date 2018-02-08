@@ -5,6 +5,7 @@ import { Actions, ActionConst } from 'react-native-router-flux';
 import AppText from '../../components/AppText';
 import { DefaultFont } from '../../services/constant';
 
+import { connect } from 'react-redux';
 
 
 class SideMenu extends Component {
@@ -19,15 +20,9 @@ class SideMenu extends Component {
 
     constructor(props){
         super(props);
-
-        this.state = {
-            avatar_uri: 'https://media3.mensxp.com/media/content/2016/Oct/coolest-hairstyles-of-david-beckham-652x400-2-1477314521.jpg',
-            user_name: 'DAVID BECKHAM' 
-        }
-
-        Actions.drawerOpen();
     }
 
+    
     logOut(){
         AsyncStorage.clear().then(()=>{
             Actions.jump('login');
@@ -58,8 +53,8 @@ class SideMenu extends Component {
         return (
             <View style={styles.sideMenu}>
                 <View style={styles.avatar}>
-                    <Avatar large rounded source={{uri: this.state.avatar_uri}}/>
-                    <AppText style={{marginTop: 15}}>{this.state.user_name}</AppText>
+                    <Avatar large rounded source={{uri: this.props.user.avatar}}/>
+                    <AppText style={{marginTop: 15}}>{this.props.user.user_name}</AppText>
                 </View>
                 <View style={styles.menuList}>
                     {this.renderMenuItems()}
@@ -83,5 +78,11 @@ const styles = StyleSheet.create({
     }
 });
 
+const mapStateToProps = (state) => {
+    return {
+        user: state.auth.data
+    }
+}
 
-export default SideMenu;
+
+export default connect(mapStateToProps)(SideMenu);

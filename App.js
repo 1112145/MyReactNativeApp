@@ -16,6 +16,10 @@ const RobotoFont = require('./src/assets/fonts/Roboto-Medium.ttf');
 const RammettoOne = require('./src/assets/fonts/RammettoOne.ttf');
 const Oswald = require('./src/assets/fonts/Oswald.ttf');
 
+import { store } from './src/_redux';
+import { Provider } from 'react-redux';
+
+
 export default class App extends React.Component {
 
   constructor(props) {
@@ -30,20 +34,23 @@ export default class App extends React.Component {
       return <AppLoading />;
     }
     return (
-      <View style={styles.container}>
-        <StatusBarBackground/>
-        <Router backAndroidHandler={()=>(null)} sceneStyle={styles.container} >
-          <Scene key='root' >
-            <Scene key="login" component={Login} hideNavBar />
-            <Scene key="signup" component={SignUp} hideNavBar />
-            <Scene key="drawer" drawer contentComponent={SideMenu} 
-                    onEnter={this.checkIfLogined} 
-                    drawerPosition="left" drawerWidth={300} hideNavBar>
-              <Scene key="home" component={Home}/>
+      <Provider store={store}>
+        <View style={styles.container}>
+          <StatusBarBackground/>
+          <Router backAndroidHandler={()=>(null)} sceneStyle={styles.container} >
+            <Scene key='root' >
+              <Scene key="login" component={Login} hideNavBar />
+              <Scene key="signup" component={SignUp} hideNavBar />
+              <Scene key="drawer" drawer contentComponent={SideMenu} 
+                      onEnter={this.checkIfLogined} 
+                      drawerPosition="left" drawerWidth={300} hideNavBar>
+                <Scene key="home" component={Home}/>
+              </Scene>
             </Scene>
-          </Scene>
-        </Router>
-      </View>
+          </Router>
+        </View>
+      </Provider>
+      
     );
   }
 
